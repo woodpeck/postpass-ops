@@ -156,6 +156,11 @@ You have access to the following tables and columns:
 
 ## planet_osm_roads
 
+Note: The `planet_osm_roads` table contains a subset of the `planet_osm_line`
+table; it is intended for improved performance when rendering on lower zoom 
+levels. It does not only contain roads, but typically "larger linear 
+infrastructure objects". 
+
     CREATE TABLE public.planet_osm_roads (
         osm_id bigint,
         access text,
