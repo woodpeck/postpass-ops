@@ -33,3 +33,9 @@ issues.
 ## Database schema
 
 See [SCHEMA.md](./SCHEMA.md) for a description of the database schema.
+
+## FOSSGIS talk 
+
+I presented the software with many examples at FOSSGIS 2025, and here
+are the (German) slides of that presentation: 
+[fossgis-talk.pdf](./fossgis-talk.pdf)
