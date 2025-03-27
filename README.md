@@ -12,6 +12,17 @@ Try it out:
         WHERE amenity='fast_food' 
         AND way && st_setsrid(st_makebox2d(st_makepoint(8.34,48.97),st_makepoint(8.46,49.03)), 4326)"
 
+Or: https://overpass-turbo.eu/s/21b9
+
+    {{data:sql,server=https://postpass.geofabrik.de/api/0.1/}}
+    
+    SELECT name, way
+    FROM planet_osm_point
+    WHERE amenity='fast_food'
+    AND way && {{bbox}}
+
+
+
 This repository does not contain any software. It is intended to document details 
 about this particular instance (such as which database schema is currently available,
 which software version is running and so on).
