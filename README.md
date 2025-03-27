@@ -32,4 +32,4 @@ issues.
 
 ## Database schema
 
-See SCHEMA.md for a description of the database schema.
+See [SCHEMA.md](./SCHEMA.md) for a description of the database schema.
