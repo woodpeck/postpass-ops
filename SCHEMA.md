@@ -6,6 +6,8 @@ database schema with coordinates in EPSG:4326.
 Some OSM tags have their own columns; all tags that do not have their
 own column are accessed via the `hstore` column `tags`. See https://www.postgresql.org/docs/current/hstore.html for details about using hstore columns in PostgreSQL.
 
+See [INDEXES.md](./INDEXES.md) for a list of indexes.
+
 You have access to the following tables and columns:
 
 ## Main (Geometry) Tables
