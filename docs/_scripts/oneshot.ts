@@ -15,7 +15,7 @@ ON
     ST_Contains(admin.way, point.way)
 WHERE
     point.natural = 'tree'
-
+    AND point.tags ? 'ref'
     AND admin.boundary='administrative'
     AND admin.admin_level = '2'
 GROUP BY
