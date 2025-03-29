@@ -1,0 +1,17 @@
+{
+  "name": "_scripts",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "chalk": "^5.4.1",
+    "color": "^5.0.0",
+    "zod": "^3.24.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "prettier": "^3.5.3",
+    "prettier-plugin-organize-imports": "^4.1.0"
+  }
+}
