@@ -14,10 +14,14 @@ export const curlData = async <T>(query: string, schema: ZodSchema<T>) => {
     'QUERYING',
     `curl -g ${API_URL} --data-urlencode "options[geojson]=false" --data-urlencode "data=${excapeQuery(query)}"`,
   )
+  let resultString = ''
+  let resultError = ''
   try {
-    const result =
-      await $`curl -g ${API_URL} --data-urlencode "options[geojson]=false" --data-urlencode "data=${excapeQuery(query)}"`.json()
-
+    const { stdout, stderr } =
+      await $`curl -g ${API_URL} --data-urlencode "options[geojson]=false" --data-urlencode "data=${excapeQuery(query)}"`
+    resultString = stdout.toString('utf-8')
+    const result = JSON.parse(resultString)
+    resultError = stderr.toString('utf-8')
     return schema.parse(result)
   } catch (error) {
     // TODO: Refactor expose error reason which is likely a timeout
@@ -28,7 +32,7 @@ export const curlData = async <T>(query: string, schema: ZodSchema<T>) => {
     //   <html><body><h1>504 Gateway Time-out</h1>
     //   The server didn't respond in time.
     //   </body></html>
-    console.error('curlData FAILED', error)
+    console.error('curlData FAILED', { error, resultString, resultError })
     return { result: [], failed: true }
   }
 }
