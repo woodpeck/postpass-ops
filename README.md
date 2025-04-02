@@ -6,20 +6,21 @@ Geofabrik servers at https://postpass.geofabrik.de/.
 
 Try it out:
 
-    curl -g http://postpass.geofabrik.de/api/0.1/interpreter --data-urlencode "data=
-        SELECT name, way 
-        FROM planet_osm_point
-        WHERE amenity='fast_food' 
-        AND way && st_setsrid(st_makebox2d(st_makepoint(8.34,48.97),st_makepoint(8.46,49.03)), 4326)"
+    curl -g http://postpass.geofabrik.de/api/0.2/interpreter --data-urlencode "data=
+        SELECT tags, geom 
+        FROM postpass_point
+        WHERE tags->>'amenity'='fast_food' 
+        AND geom && st_setsrid(st_makebox2d(st_makepoint(8.34,48.97),
+           st_makepoint(8.46,49.03)), 4326)"
 
-Or: https://overpass-turbo.eu/s/21b9
+Or: https://overpass-turbo.eu/s/21wP
 
-    {{data:sql,server=https://postpass.geofabrik.de/api/0.1/}}
+    {{data:sql,server=https://postpass.geofabrik.de/api/0.2/}}
     
-    SELECT name, way
-    FROM planet_osm_point
-    WHERE amenity='fast_food'
-    AND way && {{bbox}}
+    SELECT tags, geom
+    FROM postpass_point
+    WHERE tags->>'amenity'='fast_food'
+    AND geom && {{bbox}}
 
 
 
