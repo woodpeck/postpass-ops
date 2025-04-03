@@ -40,3 +40,7 @@ See [SCHEMA.md](./SCHEMA.md) for a description of the database schema.
 I presented the software with many examples at FOSSGIS 2025, and here
 are the (German) slides of that presentation: 
 [fossgis-talk.pdf](./fossgis-talk.pdf)
+
+## Announcements on public forums
+
+* [German forum on 03 Apr 25](https://community.openstreetmap.org/t/postpass-eine-offentlich-nutzbare-osm-postgis/128283)
