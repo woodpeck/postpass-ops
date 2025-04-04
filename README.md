@@ -27,10 +27,10 @@ Or: https://overpass-ultra.us/#m=14/51.9640/7.6129&q=LQhQBcE8AcFMC4AE0D2Bnc0CGa2
     ---
     type: postpass
     ---
-    SELECT name, way
-    FROM planet_osm_point
+    SELECT tags, geom
+    FROM postpass_point
     WHERE amenity='fast_food'
-    AND way && ST_MakeEnvelope({{swen}},4326)
+    AND geom && ST_MakeEnvelope({{swen}},4326)
 
 
 This repository does not contain any software. It is intended to document details 
