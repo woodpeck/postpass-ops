@@ -29,7 +29,7 @@ Or: https://overpass-ultra.us/#m=14/51.9640/7.6129&q=LQhQBcE8AcFMC4AE0D2Bnc0CGa2
     ---
     SELECT tags, geom
     FROM postpass_point
-    WHERE amenity='fast_food'
+    WHERE tags->>'amenity'='fast_food'
     AND geom && ST_MakeEnvelope({{swen}},4326)
 
 
