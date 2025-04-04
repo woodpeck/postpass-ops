@@ -6,20 +6,21 @@ Geofabrik servers at https://postpass.geofabrik.de/.
 
 Try it out:
 
-    curl -g http://postpass.geofabrik.de/api/0.1/interpreter --data-urlencode "data=
-        SELECT name, way 
-        FROM planet_osm_point
-        WHERE amenity='fast_food' 
-        AND way && st_setsrid(st_makebox2d(st_makepoint(8.34,48.97),st_makepoint(8.46,49.03)), 4326)"
+    curl -g http://postpass.geofabrik.de/api/0.2/interpreter --data-urlencode "data=
+        SELECT tags, geom 
+        FROM postpass_point
+        WHERE tags->>'amenity'='fast_food' 
+        AND geom && st_setsrid(st_makebox2d(st_makepoint(8.34,48.97),
+           st_makepoint(8.46,49.03)), 4326)"
 
-Or: https://overpass-turbo.eu/s/21b9
+Or: https://overpass-turbo.eu/s/21wP
 
-    {{data:sql,server=https://postpass.geofabrik.de/api/0.1/}}
+    {{data:sql,server=https://postpass.geofabrik.de/api/0.2/}}
     
-    SELECT name, way
-    FROM planet_osm_point
-    WHERE amenity='fast_food'
-    AND way && {{bbox}}
+    SELECT tags, geom
+    FROM postpass_point
+    WHERE tags->>'amenity'='fast_food'
+    AND geom && {{bbox}}
 
 Or: https://overpass-ultra.us/#m=14/51.9640/7.6129&q=LQhQBcE8AcFMC4AE0D2Bnc0CGa2hMKAMoCiAMiQMIAqiAdlgLawA0iA7lpKAGIBKAeQCyyADZY6scAH10jaagCWdcKADqACRJ8SiJrDqKoAXgDkAMxwzzKFABNToAIIA5ACIcuiAGTfERamkhLABrWBI6ADdYURQ4AAoAb0S0dgMAX3SWABYAZgAmADYASiA
 
@@ -48,3 +49,7 @@ See [SCHEMA.md](./SCHEMA.md) for a description of the database schema.
 I presented the software with many examples at FOSSGIS 2025, and here
 are the (German) slides of that presentation: 
 [fossgis-talk.pdf](./fossgis-talk.pdf)
+
+## Announcements on public forums
+
+* [German forum on 03 Apr 25](https://community.openstreetmap.org/t/postpass-eine-offentlich-nutzbare-osm-postgis/128283)
