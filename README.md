@@ -22,7 +22,7 @@ Or: https://overpass-turbo.eu/s/21wP
     WHERE tags->>'amenity'='fast_food'
     AND geom && {{bbox}}
 
-Or: https://overpass-ultra.us/#m=14/51.9640/7.6129&q=LQhQBcE8AcFMC4AE0D2Bnc0CGa2hMKAMoCiAMiQMIAqiAdlgLawA0iA7lpKAGIBKAeQCyyADZY6scAH10jaagCWdcKADqACRJ8SiJrDqKoAXgDkAMxwzzKFABNToAIIA5ACIcuiAGTfERamkhLABrWBI6ADdYURQ4AAoAb0S0dgMAX3SWABYAZgAmADYASiA
+Or: https://overpass-ultra.us/#m=14.00/51.9640/7.6129&q=LQhQBcE8AcFMC4AE0D2Bnc0CGa2hMKAMoCiAMiQMIAqi4WA5mgDSIOwoC2oAYgEoB5ALLJ0mHGgD6qAJYA7cKADqACRJ8SdRmmAA+XQHIsnWHJlQDAXgMAzHOEk2UKACYHQAQQByAETYdORAAyIMQiakkhLABrWBI5ADdYABsUOAAKAG9MgHc0UwBfAuYAFgBmACYANgBKUCA
 
     ---
     type: postpass
