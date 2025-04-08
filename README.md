@@ -22,6 +22,15 @@ Or: https://overpass-turbo.eu/s/21wP
     WHERE tags->>'amenity'='fast_food'
     AND geom && {{bbox}}
 
+Or: https://overpass-ultra.us/#m=14.00/51.9640/7.6129&q=LQhQBcE8AcFMC4AE0D2Bnc0CGa2hMKAMoCiAMiQMIAqi4WA5mgDSIOwoC2oAYgEoB5ALLJ0mHGgD6qAJYA7cKADqACRJ8SdRmmAA+XQHIsnWHJlQDAXgMAzHOEk2UKACYHQAQQByAETYdORAAyIMQiakkhLABrWBI5ADdYABsUOAAKAG9MgHc0UwBfAuYAFgBmACYANgBKUCA
+
+    ---
+    type: postpass
+    ---
+    SELECT tags, geom
+    FROM postpass_point
+    WHERE tags->>'amenity'='fast_food'
+    AND geom && ST_MakeEnvelope({{wsen}},4326)
 
 
 This repository does not contain any software. It is intended to document details 
