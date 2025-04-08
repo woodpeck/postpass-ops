@@ -99,20 +99,20 @@ unions between the three geometry tables:
 
     CREATE VIEW postpass_pointlinepolygon AS
         SELECT * FROM postpass_point
-        UNION SELECT * FROM postpass_line
-        UNION SELECT * FROM postpass_polygon;
+        UNION ALL SELECT * FROM postpass_line
+        UNION ALL SELECT * FROM postpass_polygon;
 
     CREATE VIEW postpass_pointpolygon AS
         SELECT * FROM postpass_point
-        UNION SELECT * FROM postpass_polygon;
+        UNION ALL SELECT * FROM postpass_polygon;
 
     CREATE VIEW postpass_pointline AS
         SELECT * FROM postpass_point
-        UNION SELECT * FROM postpass_line;
+        UNION ALL SELECT * FROM postpass_line;
 
     CREATE VIEW postpass_linepolygon AS
         SELECT * FROM postpass_line
-        UNION SELECT * FROM postpass_polygon;
+        UNION ALL SELECT * FROM postpass_polygon;
 
 ### Compatibility Views
 
