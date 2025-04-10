@@ -16,13 +16,14 @@ This query sums up the lengths of different highway types in Karlsruhe:
     curl -g https://postpass.geofabrik.de/api/0.2/interpreter \
        --data-urlencode "options[geojson]=false" \
        --data-urlencode "data=
-          SELECT count(*), tags->>'amenity' as amenity
-          FROM postpass_point
-          WHERE tags?'amenity'
+          SELECT sum(st_length(geom::geography)) AS sum,
+             tags->>'highway' AS highway
+          FROM postpass_line
+          WHERE tags?'highway'
           AND geom && st_setsrid(st_makebox2d(
              st_makepoint(8.34,48.97),
              st_makepoint(8.46,49.03)), 4326)
-          GROUP BY amenity"
+          GROUP BY highway"
 
 Note that a simple bounding box is used; alternatively one could join 
 with the `postpass_polygon` table to use the exact admin boundary.
