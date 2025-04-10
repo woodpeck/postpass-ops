@@ -15,9 +15,7 @@ This query counts different amenity values in Karlsruhe:
           SELECT count(*), tags->>'amenity' as amenity
           FROM postpass_point
           WHERE tags?'amenity'
-          AND geom && st_setsrid(st_makebox2d(
-             st_makepoint(8.34,48.97),
-             st_makepoint(8.46,49.03)), 4326)
+          AND geom && st_makeenvelope(8.34,48.97,8.46,49.03,4326)
           GROUP BY amenity"
 
 Note that a simple bounding box is used; alternatively one could join

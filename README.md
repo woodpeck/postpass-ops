@@ -10,8 +10,7 @@ Try it out:
         SELECT tags, geom 
         FROM postpass_point
         WHERE tags->>'amenity'='fast_food' 
-        AND geom && st_setsrid(st_makebox2d(st_makepoint(8.34,48.97),
-           st_makepoint(8.46,49.03)), 4326)"
+        AND geom && st_makeenvelope(8.34,48.97,8.46,49.03,4326)"
 
 Or: https://overpass-turbo.eu/s/21wP
 

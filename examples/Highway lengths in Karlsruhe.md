@@ -20,9 +20,7 @@ This query sums up the lengths of different highway types in Karlsruhe:
              tags->>'highway' AS highway
           FROM postpass_line
           WHERE tags?'highway'
-          AND geom && st_setsrid(st_makebox2d(
-             st_makepoint(8.34,48.97),
-             st_makepoint(8.46,49.03)), 4326)
+          AND geom && st_makeenvelope(8.34,48.97,8.46,49.03,4326)
           GROUP BY highway"
 
 Note that a simple bounding box is used; alternatively one could join 

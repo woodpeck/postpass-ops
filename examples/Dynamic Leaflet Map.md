@@ -45,13 +45,12 @@ anything" message when the map is zoomed out too far.
           // us less whitespace in the result.
           function buildPostpassUrl() {
             let b = map.getBounds();  
-            let box2d = `st_setsrid( 
-              st_makebox2d( 
-                st_makepoint(${b.getWest()},${b.getSouth()}), 
-                st_makepoint(${b.getEast()},${b.getNorth()})), 4326)`;
+            let envelope = `st_makeenvelope( 
+                ${b.getWest()}, ${b.getSouth()}, 
+                ${b.getEast()}, ${b.getNorth()}, 4326)`;
             let query = `SELECT osm_id, osm_type, tags, st_centroid(geom) 
               FROM postpass_pointpolygon 
-              WHERE tags->>'amenity'='fast_food' AND geom && ${box2d}`;
+              WHERE tags->>'amenity'='fast_food' AND geom && ${envelope}`;
             let url = new URL('https://postpass.geofabrik.de/api/0.2/interpreter?');
             url.searchParams.append("data", query);
             url.searchParams.append("options[pretty]", "false");
