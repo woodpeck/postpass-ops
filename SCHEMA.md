@@ -69,8 +69,7 @@ node coordinates are kept in a "flat nodes" file and not in the database.
 
 ### planet_osm_ways
 
-Models OSM ways. Note the `tags` column is not a `hstore` type
-like in the geometry tables, but a `jsonb`.
+Models OSM ways.
 
     CREATE TABLE public.planet_osm_ways (
         id bigint NOT NULL,
@@ -80,8 +79,7 @@ like in the geometry tables, but a `jsonb`.
 
 ### planet_osm_rels
 
-Models OSM relations. Note the `tags` column is not a `hstore` type
-like in the geometry tables, but a `jsonb`.
+Models OSM relations.
 
 CREATE TABLE public.planet_osm_rels (
     id bigint NOT NULL,
