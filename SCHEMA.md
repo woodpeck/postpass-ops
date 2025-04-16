@@ -81,11 +81,11 @@ Models OSM ways.
 
 Models OSM relations.
 
-CREATE TABLE public.planet_osm_rels (
-    id bigint NOT NULL,
-    members jsonb NOT NULL,
-    tags jsonb
-);
+    CREATE TABLE public.planet_osm_rels (
+        id bigint NOT NULL,
+        members jsonb NOT NULL,
+        tags jsonb
+    );
 
 ## Views
 
