@@ -51,4 +51,5 @@ are the (German) slides of that presentation:
 
 ## Announcements on public forums
 
-* [German forum on 03 Apr 25](https://community.openstreetmap.org/t/postpass-eine-offentlich-nutzbare-osm-postgis/128283)
+* [German OSM forum on 03 Apr 25](https://community.openstreetmap.org/t/postpass-eine-offentlich-nutzbare-osm-postgis/128283)
+* [International OSM forum on 11 Apr 25](https://community.openstreetmap.org/t/postpass-a-public-osm-postgis-instance/128649)
