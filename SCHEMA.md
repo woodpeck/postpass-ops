@@ -4,7 +4,7 @@ The currently deployed database is a relatively straightforward osm2pgsql "flex 
 import with coordinates in EPSG:4326.
 
 The import configuration is set out in [./postpass.lua](postpass.lua); osm2pgsql
-is then called with `-o flex` and `-S postpass.lua` to ingest that.
+is then called with `-O flex` and `-S postpass.lua` to ingest that.
 
 All tags are stored in one PostgreSQL column using the `jsonb` data type. 
 See https://www.postgresql.org/docs/current/datatype-json.html for details about
