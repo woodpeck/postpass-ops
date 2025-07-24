@@ -32,10 +32,10 @@ anything" message when the map is zoomed out too far.
           var map = L.map('map').setView([49.012, 8.3985], 14);
           var layergroup = L.layerGroup();
           layergroup.addTo(map);
-          L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             minZoom: 10,
-            attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           }).addTo(map);
 
           // This Postpass query selects points and polygons 
