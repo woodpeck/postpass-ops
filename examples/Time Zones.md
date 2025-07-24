@@ -8,7 +8,7 @@ tag `boundary=time_zone`.
 This query loads all time zone boundaries from OpenStreetMap:
 
     curl -o timezones.geojson \
-       -g "http://postpass.geofabrik.de/api/0.2/interpreter" \
+       -g "https://postpass.geofabrik.de/api/0.2/interpreter" \
        --data-urlencode "data=
           SELECT * 
           FROM postpass_polygon

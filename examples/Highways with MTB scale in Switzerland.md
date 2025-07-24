@@ -13,7 +13,7 @@ performance, but a query that searches for "an adminlevel 2
 polygon named Switzerland" would also be possible.
 
     curl -o paths.geojson \
-       -g http://postpass.geofabrik.de/api/0.2/interpreter \
+       -g https://postpass.geofabrik.de/api/0.2/interpreter \
        --data-urlencode "data=
           SELECT ways.geom, ways.tags->>'highway' as highway,
              ways.tags->>'mtb:scale' as mtbscale

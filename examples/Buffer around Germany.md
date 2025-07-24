@@ -12,7 +12,7 @@ and then PostGIS uses metres.
 This query creates a 1000 metre buffer around the boundary of Germany:
 
     curl -o germany.geojson \
-       -g "http://postpass.geofabrik.de/api/0.2/interpreter" \
+       -g "https://postpass.geofabrik.de/api/0.2/interpreter" \
        --data-urlencode "data=
           SELECT st_buffer(geom::geography, 1000)::geometry
           FROM postpass_polygon
