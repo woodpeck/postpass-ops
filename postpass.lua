@@ -55,7 +55,14 @@ tables.point = osm2pgsql.define_table{
     columns = {
         { column = 'tags',  type = 'jsonb' },
         { column = 'geom',  type = 'point', projection = srid }
+    },
+    indexes = {
+	    { column = { "geom" }, name = "postpass_point_geom_idx", method = "gist" },
+	    { column = { "osm_type", "osm_id" }, name = "postpass_point_osm_type_osm_id_idx", method = "btree" },
+	    { column = { "tags" }, name = "postpass_point_tags", method = "gin" },
+	    { expression = "((tags->>'name'::text))" , name = "postpass_point_name", method = "btree" },
     }
+
 }
 
 tables.line = osm2pgsql.define_table{
@@ -64,7 +71,13 @@ tables.line = osm2pgsql.define_table{
     columns = {
         { column = 'tags',  type = 'jsonb' },
         { column = 'geom',  type = 'multilinestring', projection = srid }
-    }
+    },
+    indexes = {
+	    { column = { "geom" }, name = "postpass_line_geom_idx", method = "gist" },
+	    { column = { "osm_type", "osm_id" }, name = "postpass_line_osm_type_osm_id_idx", method = "btree" },
+	    { column = { "tags" }, name = "postpass_line_tags", method = "gin" },
+	    { expression = "((tags->>'name'::text))" , name = "postpass_line_name", method = "btree" },
+	}
 }
 
 tables.polygon = osm2pgsql.define_table{
@@ -73,7 +86,15 @@ tables.polygon = osm2pgsql.define_table{
     columns = {
         { column = 'tags',  type = 'jsonb' },
         { column = 'geom',  type = 'multipolygon', projection = srid }
-    }
+    },
+    indexes = {
+	    { column = { "geom" }, name = "postpass_polygon_geom_idx", method = "gist" },
+	    { column = { "osm_type", "osm_id" }, name = "postpass_polygon_osm_type_osm_id_idx", method = "btree" },
+	    { column = { "tags" }, name = "postpass_polygon_tags", method = "gin" },
+
+	    { expression = "((tags->>'name'::text))" , name = "postpass_polygon_name", method = "btree" },
+	    { column = {"geom"}, where = "((tags->>'boundary'::text) = 'administrative'::text)" , name = "postpass_polygon_admin", method = "gist" },
+	}
 }
 
 local function as_bool(value)

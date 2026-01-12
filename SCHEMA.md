@@ -10,7 +10,10 @@ All tags are stored in one PostgreSQL column using the `jsonb` data type.
 See https://www.postgresql.org/docs/current/datatype-json.html for details about
 using `jsonb` columns in PostgreSQL.
 
-See [INDEXES.md](./INDEXES.md) for a list of indexes.
+Various indexes are created, see the `indexes` attribute of the tables in the
+[./postpass.lua](postpass.lua) file, or can be examined with the following query:
+
+    psql -c "SELECT indexdef FROM pg_indexes WHERE indexname LIKE 'postpass_%' ORDER BY indexname;"
 
 You have access to the following tables and columns:
 
