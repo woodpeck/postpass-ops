@@ -43,11 +43,10 @@ issues.
 
 See [SCHEMA.md](./SCHEMA.md) for a description of the database schema.
 
-## FOSSGIS talk 
+## Talk slides  
 
-I presented the software with many examples at FOSSGIS 2025, and here
-are the (German) slides of that presentation: 
-[fossgis-talk.pdf](./fossgis-talk.pdf)
+I presented the software with many examples at the State of the Map and State
+of the Map EU conferences in 2025, and here are the [talk slides](./sotm-talk.pdf). A German-language presentation was also held at FOSSGIS 2025 [(slides)](./fossgis-talk.pdf) but caution, this was an earlier version and many things in that talk are not accurate for the currently running version.
 
 ## Announcements on public forums
 
