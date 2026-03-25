@@ -92,6 +92,8 @@ Models OSM relations.
 
 ## Views
 
+The views are defined in `views.sql`.
+
 ### Combined Views
 
 For many queries, you might want to combine points and polygons. This can inflate queries
