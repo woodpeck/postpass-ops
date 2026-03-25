@@ -39,10 +39,14 @@ Contains lines built from OSM relations or ways. The `osm_id` column
 is the actual OSM id of the object, and `osm_type` is either 'W' 
 or 'R'.
 
+`length_m`: the length (in metres) of the line along the spheroid. Can be
+0 in edge cases such as a 2 node way, where both nodes have the same location.
+
     CREATE TABLE postpass_line (
         osm_type character(1) NOT NULL,
         osm_id bigint NOT NULL,
         tags jsonb,
+        length_m double precision,
         geom geometry(MultiLineString,4326)
     );
 
@@ -52,10 +56,14 @@ Contains polygons built from OSM relations or ways. The `osm_id` column
 is the actual OSM id of the object, and `osm_type` is either 'W' 
 or 'R'.
 
+`area_m2`: the area (in square metres) of the area in the spheroid. Can be
+0.
+
     CREATE TABLE postpass_polygon (
         osm_type character(1) NOT NULL,
         osm_id bigint NOT NULL,
         tags jsonb,
+        area_m2 double precision,
         geom geometry(MultiPolygon,4326)
     );
 
@@ -92,30 +100,22 @@ Models OSM relations.
 
 ## Views
 
-The views are defined in `views.sql`.
+The views are defined in `views.sql`. This file should be run after an import.
 
 ### Combined Views
 
 For many queries, you might want to combine points and polygons. This can inflate queries
 through excessive use of UNIONs. Therefore, four views have been created to model all possible
-unions between the three geometry tables:
+unions between the three geometry tables.
 
-    CREATE VIEW postpass_pointlinepolygon AS
-        SELECT * FROM postpass_point
-        UNION ALL SELECT * FROM postpass_line
-        UNION ALL SELECT * FROM postpass_polygon;
+Each view as the same columns: `osm_type`, `osm_id`, `tags`, `geom`,
+`length_m`, `area_m2`. The last 2 are `null` for tables which don't have them
+(they might be 0 anyway).
 
-    CREATE VIEW postpass_pointpolygon AS
-        SELECT * FROM postpass_point
-        UNION ALL SELECT * FROM postpass_polygon;
-
-    CREATE VIEW postpass_pointline AS
-        SELECT * FROM postpass_point
-        UNION ALL SELECT * FROM postpass_line;
-
-    CREATE VIEW postpass_linepolygon AS
-        SELECT * FROM postpass_line
-        UNION ALL SELECT * FROM postpass_polygon;
+ * `postpass_pointlinepolygon`: `_point`, `_line` & `_polygon` tables
+ * `postpass_pointline`: `_point` & `_line` & tables
+ * `postpass_pointpolygon`: `_point` & `_polygon` tables
+ * `postpass_linepolygon`: `_line` & `_polygon` tables
 
 ### Compatibility Views
 

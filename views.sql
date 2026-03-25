@@ -1,21 +1,26 @@
 -- Combined views
 
 CREATE OR REPLACE VIEW postpass_pointlinepolygon AS
-	SELECT * FROM postpass_point
-	UNION ALL SELECT * FROM postpass_line
-	UNION ALL SELECT * FROM postpass_polygon;
+	SELECT osm_type, osm_id, tags, geom, NULL::float as length_m, NULL::float as area_m2 FROM postpass_point
+	UNION ALL
+	SELECT osm_type, osm_id, tags, geom, length_m, NULL::float as area_m2 FROM postpass_line
+	UNION ALL
+	SELECT osm_type, osm_id, tags, geom, NULL::float as length_m, area_m2 FROM postpass_polygon;
 
 CREATE OR REPLACE VIEW postpass_pointpolygon AS
-	SELECT * FROM postpass_point
-	UNION ALL SELECT * FROM postpass_polygon;
+	SELECT osm_type, osm_id, tags, geom, NULL::float as length_m, NULL::float as area_m2 FROM postpass_point
+	UNION ALL
+	SELECT osm_type, osm_id, tags, geom, NULL::float as length_m, area_m2 FROM postpass_polygon;
 
 CREATE OR REPLACE VIEW postpass_pointline AS
-	SELECT * FROM postpass_point
-	UNION ALL SELECT * FROM postpass_line;
+	SELECT osm_type, osm_id, tags, geom, NULL::float as length_m, NULL::float as area_m2 FROM postpass_point
+	UNION ALL
+	SELECT osm_type, osm_id, tags, geom, length_m, NULL::float as area_m2 FROM postpass_line;
 
 CREATE OR REPLACE VIEW postpass_linepolygon AS
-	SELECT * FROM postpass_line
-	UNION ALL SELECT * FROM postpass_polygon;
+	SELECT osm_type, osm_id, tags, geom, length_m, NULL::float as area_m2 FROM postpass_line
+	UNION ALL
+	SELECT osm_type, osm_id, tags, geom, NULL::float as length_m, area_m2 FROM postpass_polygon;
 
 
 -- Compatibility Views for backwards compatibility with postpass 0.1

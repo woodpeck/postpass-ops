@@ -70,13 +70,15 @@ tables.line = osm2pgsql.define_table{
     ids = { type = 'any', id_column = 'osm_id', type_column = 'osm_type' },
     columns = {
         { column = 'tags',  type = 'jsonb' },
-        { column = 'geom',  type = 'multilinestring', projection = srid }
+        { column = 'geom',  type = 'multilinestring', projection = srid },
+        { column = "length_m", sql_type = "double precision" }
     },
     indexes = {
 	    { column = { "geom" }, name = "postpass_line_geom_idx", method = "gist" },
 	    { column = { "osm_type", "osm_id" }, name = "postpass_line_osm_type_osm_id_idx", method = "btree" },
 	    { column = { "tags" }, name = "postpass_line_tags", method = "gin" },
 	    { expression = "((tags->>'name'::text))" , name = "postpass_line_name", method = "btree" },
+	    { column = { "length_m" }, name = "postpass_line_length_m", method = "btree" },
 	}
 }
 
@@ -85,7 +87,8 @@ tables.polygon = osm2pgsql.define_table{
     ids = { type = 'any', id_column = 'osm_id', type_column = 'osm_type' },
     columns = {
         { column = 'tags',  type = 'jsonb' },
-        { column = 'geom',  type = 'multipolygon', projection = srid }
+        { column = 'geom',  type = 'multipolygon', projection = srid },
+        { column = "area_m2", sql_type = "double precision" }
     },
     indexes = {
 	    { column = { "geom" }, name = "postpass_polygon_geom_idx", method = "gist" },
@@ -94,6 +97,7 @@ tables.polygon = osm2pgsql.define_table{
 
 	    { expression = "((tags->>'name'::text))" , name = "postpass_polygon_name", method = "btree" },
 	    { column = {"geom"}, where = "((tags->>'boundary'::text) = 'administrative'::text)" , name = "postpass_polygon_admin", method = "gist" },
+	    { column = { "area_m2" }, name = "postpass_polygon_area_m2", method = "btree" },
 	}
 }
 
@@ -127,12 +131,14 @@ function osm2pgsql.process_way(object)
     if polygon and object.is_closed then
         tables.polygon:insert({
             tags = object.tags,
-            geom = object:as_polygon()
+            geom = object:as_polygon(),
+            area_m2 = object:as_polygon():spherical_area()
         })
     else
         tables.line:insert({
             tags = object.tags,
-            geom = object:as_linestring()
+            geom = object:as_linestring(),
+            length_m = object:as_linestring():spherical_length()
         })
     end
 end
@@ -157,7 +163,8 @@ function osm2pgsql.process_relation(object)
     if not make_polygon then
         tables.line:insert({
             tags = object.tags,
-            geom = object:as_multilinestring()
+            geom = object:as_multilinestring(),
+            length_m = object:as_multilinestring():spherical_length()
         })
     end
 
@@ -167,13 +174,15 @@ function osm2pgsql.process_relation(object)
         if multi_geometry then
             tables.polygon:insert({
                 tags = object.tags,
-                geom = geom
+                geom = geom,
+                area_m2 = geom:spherical_area()
             })
         else
             for sgeom in geom:geometries() do
                 tables.polygon:insert({
                     tags = object.tags,
-                    geom = sgeom
+                    geom = sgeom,
+                    area_m2 = sgeom:spherical_area()
                 })
             end
         end
