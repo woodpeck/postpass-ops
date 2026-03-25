@@ -43,6 +43,10 @@ issues.
 
 See [SCHEMA.md](./SCHEMA.md) for a description of the database schema.
 
+The data can be imported with:
+
+    osm2pgsql -O flex -S ./postpass.lua INPUT_FILENAME.osm.pbf
+
 ## Talk slides  
 
 I presented the software with many examples at the State of the Map and State
