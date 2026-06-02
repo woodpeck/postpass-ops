@@ -46,6 +46,11 @@ See [SCHEMA.md](./SCHEMA.md) for a description of the database schema.
 The data can be imported with:
 
     osm2pgsql -O flex -S ./postpass.lua INPUT_FILENAME.osm.pbf
+    psql -f views.sql
+
+This need a version of `osm2pgsql` with at least commit
+[`61ac7152`](https://github.com/osm2pgsql-dev/osm2pgsql/commit/61ac71521d00d1dc401b14e97a810f11dbcf9d26).
+`v2.2.0` does not have this commit.
 
 ## Talk slides  
 
