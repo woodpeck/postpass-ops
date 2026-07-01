@@ -39,6 +39,21 @@ which software version is running and so on).
 Please use the "issues" feature of this repository if you want to discuss operational
 issues.
 
+## Formatter
+
+In addition to the plain Postpass service, this particular instance also runs the [Postpass formatter](https://github.com/woodpeck/postpass-formatter) which allows you to request results in different output formats. Instead of the path component `interpreter` use the path component `formatter`, and supply an additional parameter `format` saying which format you want. For example, to get the top 10 amenity values in a bbox as a markdown table:
+
+    curl -g https://postpass.geofabrik.de/api/formatter \
+        --data-urlencode "format=md_table" \
+        --data-urlencode "data=
+        SELECT tags->>'amenity' AS amenity, count(*) AS count 
+        FROM postpass_point 
+        WHERE tags?'amenity' 
+        AND geom && st_makeenvelope(8.34,48.97,8.46,49.03,4326) 
+        GROUP BY amenity 
+        ORDER BY count DESC 
+        LIMIT 10"
+
 ## Database schema
 
 See [SCHEMA.md](./SCHEMA.md) for a description of the database schema.
