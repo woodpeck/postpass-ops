@@ -6,7 +6,7 @@ Geofabrik servers at https://postpass.geofabrik.de/.
 
 Try it out:
 
-    curl -g https://postpass.geofabrik.de/api/0.2/interpreter --data-urlencode "data=
+    curl -g https://postpass.geofabrik.de/api/interpreter --data-urlencode "data=
         SELECT tags, geom 
         FROM postpass_point
         WHERE tags->>'amenity'='fast_food' 
@@ -14,14 +14,14 @@ Try it out:
 
 Or: https://overpass-turbo.eu/s/21wP
 
-    {{data:sql,server=https://postpass.geofabrik.de/api/0.2/}}
+    {{data:sql,server=https://postpass.geofabrik.de/api/}}
     
     SELECT tags, geom
     FROM postpass_point
     WHERE tags->>'amenity'='fast_food'
     AND geom && {{bbox}}
 
-Or: https://overpass-ultra.us/#m=14.00/51.9640/7.6129&q=LQhQBcE8AcFMC4AE0D2Bnc0CGa2hMKAMoCiAMiQMIAqi4WA5mgDSIOwoC2oAYgEoB5ALLJ0mHGgD6qAJYA7cKADqACRJ8SdRmmAA+XQHIsnWHJlQDAXgMAzHOEk2UKACYHQAQQByAETYdORAAyIMQiakkhLABrWBI5ADdYABsUOAAKAG9MgHc0UwBfAuYAFgBmACYANgBKUCA
+Or: [on Overpass Ultra](https://overpass-ultra.us/#m=14.00/51.9640/7.6129&q=LQhQBcE8AcFMC4AE0D2Bnc0CGa2hMKAMoCiAMiQMIAqi4WA5mgDSIOwoC2oAYgEoB5ALLJ0mHGgD6qAJYA7cKADqACRJ8SdRmmAA+XQHIsnWHJlQDAXgMAzHOEk2UKACYHQAQQByAETYdORAAyIMQiakkhLABrWBI5ADdYABsUOAAKAG9MgHc0UwBfAuYAFgBmACYANgBKUCA)
 
     ---
     type: postpass
