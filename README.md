@@ -6,7 +6,7 @@ Geofabrik servers at https://postpass.geofabrik.de/.
 
 Try it out:
 
-    curl -g https://postpass.geofabrik.de/api/0.2/interpreter --data-urlencode "data=
+    curl -g https://postpass.geofabrik.de/api/interpreter --data-urlencode "data=
         SELECT tags, geom 
         FROM postpass_point
         WHERE tags->>'amenity'='fast_food' 
@@ -14,7 +14,7 @@ Try it out:
 
 Or: https://overpass-turbo.eu/s/21wP
 
-    {{data:sql,server=https://postpass.geofabrik.de/api/0.2/}}
+    {{data:sql,server=https://postpass.geofabrik.de/api/}}
     
     SELECT tags, geom
     FROM postpass_point
