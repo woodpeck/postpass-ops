@@ -13,7 +13,7 @@ in degrees, but casting the geometry to a geography data type with
 
 This query sums up the lengths of different highway types in Karlsruhe:
 
-    curl -g https://postpass.geofabrik.de/api/0.2/interpreter \
+    curl -G https://postpass.geofabrik.de/api/0.2/interpreter \
        --data-urlencode "options[geojson]=false" \
        --data-urlencode "data=
           SELECT sum(st_length(geom::geography)) AS sum,

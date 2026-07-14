@@ -6,7 +6,7 @@ Geofabrik servers at https://postpass.geofabrik.de/.
 
 Try it out:
 
-    curl -g https://postpass.geofabrik.de/api/interpreter --data-urlencode "data=
+    curl -G https://postpass.geofabrik.de/api/interpreter --data-urlencode "data=
         SELECT tags, geom 
         FROM postpass_point
         WHERE tags->>'amenity'='fast_food' 
@@ -43,7 +43,7 @@ issues.
 
 In addition to the plain Postpass service, this particular instance also runs the [Postpass formatter](https://github.com/woodpeck/postpass-formatter) which allows you to request results in different output formats. Instead of the path component `interpreter` use the path component `formatter`, and supply an additional parameter `format` saying which format you want. For example, to get the top 10 amenity values in a bbox as a markdown table:
 
-    curl -g https://postpass.geofabrik.de/api/formatter \
+    curl -G https://postpass.geofabrik.de/api/formatter \
         --data-urlencode "format=md_table" \
         --data-urlencode "data=
         SELECT tags->>'amenity' AS amenity, count(*) AS count 

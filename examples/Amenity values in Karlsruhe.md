@@ -9,7 +9,7 @@ disable GeoJSON creation, and retrieve a standard JSON instead.
 
 This query counts different amenity values in Karlsruhe:
 
-    curl -g https://postpass.geofabrik.de/api/0.2/interpreter \
+    curl -G https://postpass.geofabrik.de/api/0.2/interpreter \
        --data-urlencode "options[geojson]=false" \
        --data-urlencode "data=
           SELECT count(*), tags->>'amenity' as amenity
