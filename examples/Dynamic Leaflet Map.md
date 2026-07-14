@@ -51,7 +51,7 @@ anything" message when the map is zoomed out too far.
             let query = `SELECT osm_id, osm_type, tags, st_centroid(geom) 
               FROM postpass_pointpolygon 
               WHERE tags->>'amenity'='fast_food' AND geom && ${envelope}`;
-            let url = new URL('https://postpass.geofabrik.de/api/0.2/interpreter?');
+            let url = new URL('https://postpass.geofabrik.de/api/interpreter?');
             url.searchParams.append("data", query);
             url.searchParams.append("options[pretty]", "false");
             return url;
