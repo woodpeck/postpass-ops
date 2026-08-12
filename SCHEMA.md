@@ -19,7 +19,7 @@ You have access to the following tables and columns:
 
 ## Main (Geometry) Tables
 
-These three tables contain the actual geometry objects. 
+These tables contain the actual geometry objects. 
 
 ### postpass_point
 
@@ -66,6 +66,16 @@ or 'R'.
         area_m2 double precision,
         geom geometry(MultiPolygon,4326)
     );
+
+### land_polygons
+
+The table is created & populated from the `land-polygons-reimport.sh` script.
+
+Contains one column, `geom` of type `geometry(Polygon,4326)`. There is a
+standard gist geometry index on that column. Data is from
+[`osmdata.openstreetmap.de`](https://osmdata.openstreetmap.de/), land polygons
+(split), cf. `../land-polygons/README.md`.
+
 
 ## Middle Tables
 

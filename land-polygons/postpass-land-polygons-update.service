@@ -1,0 +1,20 @@
+[Unit]
+Description=postpass land polygons update
+Requisite=postgresql.service
+After=postgresql.service
+
+# If this restarts 10 times in 1h, then stop restarting it, and mark it as failed.
+# This StartLimit prevents an “infinite loop of restarts”
+StartLimitIntervalSec=1h
+StartLimitBurst=10
+
+[Service]
+User=postpass
+ExecStart=/srv/postpass/land-polygons/land-polygons-reimport.sh
+StandardOutput=journal
+StandardError=journal
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

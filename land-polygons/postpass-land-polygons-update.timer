@@ -1,0 +1,8 @@
+[Timer]
+OnActiveSec=1
+OnUnitActiveSec=6hours
+RandomizedDelaySec=20mins
+Unit=postpass-land-polygons-update.service
+
+[Install]
+WantedBy=multi-user.target
