@@ -10,7 +10,7 @@ StartLimitBurst=10
 
 [Service]
 User=postpass
-ExecStart=/srv/postpass/land-polygons/land-polygons-reimport.sh
+ExecStart=/srv/postpass-ops/land-polygons/land-polygons-reimport.sh
 StandardOutput=journal
 StandardError=journal
 Restart=on-failure
