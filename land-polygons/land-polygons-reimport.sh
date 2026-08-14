@@ -16,6 +16,11 @@ export WORKINGDIR
 
 cd "$WORKINGDIR" || exit
 
+if [ ! -w "${WORKINGDIR}" ] ; then
+	echo 1>&2 "No write permissions to directory $WORKINGDIR"
+	exit 1
+fi
+
 export PGAPPNAME="postpass_land_polygons_updater"
 
 if ! psql -XAt -c "select 1" &>/dev/null ; then
