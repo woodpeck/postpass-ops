@@ -11,7 +11,8 @@ for WANTED_CMD in ogr2ogr curl units ; do
 	fi
 done
 
-export WORKINGDIR=${WORKINGDIR:-$(dirname "$0")}
+WORKINGDIR=$(realpath "${WORKINGDIR:-$(dirname "$0")}")
+export WORKINGDIR
 
 cd "$WORKINGDIR" || exit
 
