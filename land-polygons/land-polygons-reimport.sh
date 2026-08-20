@@ -11,9 +11,15 @@ for WANTED_CMD in ogr2ogr curl units ; do
 	fi
 done
 
-export WORKINGDIR=${WORKINGDIR:-$(dirname "$0")}
+WORKINGDIR=$(realpath "${WORKINGDIR:-$(dirname "$0")}")
+export WORKINGDIR
 
 cd "$WORKINGDIR" || exit
+
+if [ ! -w "${WORKINGDIR}" ] ; then
+	echo 1>&2 "No write permissions to directory $WORKINGDIR"
+	exit 1
+fi
 
 export PGAPPNAME="postpass_land_polygons_updater"
 
