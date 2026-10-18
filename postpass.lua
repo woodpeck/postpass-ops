@@ -145,7 +145,7 @@ end
 
 function osm2pgsql.process_relation(object)
 
-    local rtype = object:grab_tag('type')
+    local rtype = object.tags.type
     if (rtype ~= 'route') and (rtype ~= 'multipolygon') and (rtype ~= 'boundary') then
         return
     end
